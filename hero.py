@@ -27,30 +27,6 @@ class Hero:
         return f"{winner} won!"
 
 
-class Armor:
-    def __init__(self, name, max_block):
-        self.name = name
-        self.max_block = max_block
-
-    def block(self):
-        pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     my_hero = Hero("Grace Hopper", 200)
     print(my_hero.name)
