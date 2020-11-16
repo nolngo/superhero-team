@@ -1,3 +1,5 @@
+from ability import Ability
+from armor import Armor
 import random
 
 class Hero:
@@ -5,9 +7,11 @@ class Hero:
         self.name = name
         self.starting_health = starting_health
         self.current_health = starting_health
+        self.abilities = list()
+        self.armor = list()
 
     def add_ability(self, ability):
-        self.ability = ability
+        self.abilities.append(ability)
 
     def attack(self):
         pass
@@ -28,11 +32,7 @@ class Hero:
 
 
 if __name__ == "__main__":
-    my_hero = Hero("Grace Hopper", 200)
-    print(my_hero.name)
-    print(my_hero.current_health)
-
-    hero1 = Hero("Batman")
-    hero2 = Hero("Superman")
-
-    print(hero1.fight(hero2))
+    ability = Ability("Great Debugging", 50)
+    hero = Hero("Grace Hopper", 200)
+    hero.add_ability(ability)
+    print(hero.abilities)
