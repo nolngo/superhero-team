@@ -23,34 +23,62 @@ class Hero:
         self.armor.append(armor)
 
     def defend(self):
-        blocked_damage = 0
+        self.blocked_damage = 0
         for armor in self.armor:
-            blocked_damage -= armor.block()
-        return blocked_damage
+            self.blocked_damage -= armor.block()
+        return self.blocked_damage
 
     def take_damage(self, damage):
-        self.damage = damage
+        if abs(self.blocked_damage) < damage:
+            rec_damage = damage + self.blocked_damage
+            self.current_health -= rec_damage
+            print(f"This is damage received: {rec_damage}")
+        elif abs(self.blocked_damage) >= damage:
+            rec_damage = 0
+        return self.current_health
+
+
 
     def is_alive(self):
-        pass
+        if self.current_health > 0:
+            return True
+        elif self.current_health <= 0:
+            return False
 
     def fight(self, opponent):
-        fighters = [self.name, opponent.name]
-        winner = random.choice(fighters)
-        return f"{winner} won!"
+        fighters = [self, opponent]
+        if not self.abilities or not opponent.abilities:
+            print("Evenly Matched!")
+        else:
+            while self.current_health > 0 and opponent.current_health > 0:
+                pass
+
+
 
 
 if __name__ == "__main__":
-    hero = Hero("Grace Hopper", 200)
+    hero1 = Hero("Voss", 200)
+    hero2 = Hero("Fiji", 120)
 
-    ability = Ability("Tummy Rub", 50)
-    another_ability = Ability("Spank Cheeks", 90)
-    hero.add_ability(ability)
-    hero.add_ability(another_ability)
-    print(hero.attack())
+    ability1 = Ability("Tummy Punch", 30)
+    ability2 = Ability("Spank Cheeks", 90)
+    ability3 = Ability("Booty Slap", 20)
+    ability4 = Ability("Butt to Butt", 200)
+    hero1.add_ability(ability1)
+    hero1.add_ability(ability2)
+    hero2.add_ability(ability3)
+    hero2.add_ability(ability4)
+    
+    print(hero1.attack())
 
     armor = Armor("Chainmail", 100)
     another_armor = Armor("Paper Helmet", 20)
-    hero.add_armor(armor)
-    hero.add_armor(another_armor)
-    print(hero.defend())
+    hero1.add_armor(armor)
+    hero1.add_armor(another_armor)
+    print(hero1.defend())
+
+    print(hero1.take_damage(210))
+
+    print(hero1.is_alive())
+
+    hero1.fight(hero2)
