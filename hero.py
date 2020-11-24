@@ -50,8 +50,8 @@ class Hero:
         if not self.abilities or not opponent.abilities:
             print("Evenly Matched!")
         else:
-            while self.current_health > 0 and opponent.current_health > 0:
-                pass
+            while self.is_alive() == True and opponent.is_alive() == True:
+                print("Keep fighting!")
 
 
 
@@ -71,10 +71,14 @@ if __name__ == "__main__":
     
     print(hero1.attack())
 
-    armor = Armor("Chainmail", 100)
-    another_armor = Armor("Paper Helmet", 20)
-    hero1.add_armor(armor)
-    hero1.add_armor(another_armor)
+    armor1 = Armor("Chainmail", 100)
+    another_armor1 = Armor("Paper Helmet", 20)
+    armor2 = Armor("Wind Suit", 40)
+    another_armor2 = Armor("Ice Shield", 60)
+    hero1.add_armor(armor1)
+    hero1.add_armor(another_armor1)
+    hero2.add_armor(armor2)
+    hero2.add_armor(another_armor2)
     print(hero1.defend())
 
     print(hero1.take_damage(210))
