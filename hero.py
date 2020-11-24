@@ -1,5 +1,6 @@
 from ability import Ability
 from armor import Armor
+from weapon import Weapon
 import random
 
 class Hero:
@@ -9,12 +10,17 @@ class Hero:
         self.current_health = starting_health
         self.abilities = list()
         self.armor = list()
+        self.deaths = 0
+        self.kills = 0
 
     def add_ability(self, ability):
         self.abilities.append(ability)
 
+    def add_weapon(self, weapon):
+        self.abilities.append(weapon)
+
     def attack(self):
-        total_damage = 0
+        total_damage = 0    
         for ability in self.abilities:
             total_damage += ability.attack()
         return total_damage
@@ -37,21 +43,26 @@ class Hero:
             rec_damage = 0
         return self.current_health
 
-
-
     def is_alive(self):
         if self.current_health > 0:
             return True
         elif self.current_health <= 0:
             return False
+    
+    def add_kill(self, num_kills):
+        pass
+
+    def add_death(self, num_deaths):
+        pass
 
     def fight(self, opponent):
-        fighters = [self, opponent]
-        if not self.abilities or not opponent.abilities:
-            print("Evenly Matched!")
-        else:
-            while self.is_alive() == True and opponent.is_alive() == True:
-                print("Keep fighting!")
+        # fighters = [self, opponent]
+        # if not self.abilities or not opponent.abilities:
+        #     print("Evenly Matched!")
+        # else:
+        #     while self.is_alive() == True and opponent.is_alive() == True:
+        #         print("Keep fighting!")
+        pass
 
 
 
@@ -86,3 +97,8 @@ if __name__ == "__main__":
     print(hero1.is_alive())
 
     hero1.fight(hero2)
+
+    hero = Hero("Wonder Woman")
+    weapon = Weapon("Lasso of Truth", 90)
+    hero.add_weapon(weapon)
+    print(hero.attack())
